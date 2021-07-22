@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+
+
+
+
+    <!DOCTYPE HTML>
+    <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	
+        <title>Intermountain Sleep Disorders Calculator</title>
+    
+        <link rel="stylesheet" media="screen" href="">
+        <link rel="alternate" type="application/rss+xml" title="RSS" href="">
+    
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Daniel Reeves">
+        <meta name="description" content=".">
+        <meta name="robots" content="all">
+    
+    <script>
+    /* Input: get a temperature from the first text field
+                get a wind speed from the second text field
+     * Processing: call the second function (bmi)
+                store the value returned by bmi in a variable
+     * Output: output the value returned by bmi to the div for the user to see
+     */
+    
+        
+     
+     function doInputOutput() {
+        let cm = parseFloat(document.getElementById('cmInput').value); 
+        let kg = parseFloat(document.getElementById('kgInput').value); 
+        let inusa = parseFloat(document.getElementById('inInput').value); 
+        let lbusa = parseFloat(document.getElementById('lbInput').value);
+       let bmiOutput = bmi(cm, kg);
+       let USAOutput = USAconversion(cm, kg);
+       let USAbmiOutput = USAbmi(inusa, lbusa);
+       let EUOutput = EUconversion(inusa, lbusa);
+       document.getElementById("outputDiv").innerHTML= bmiOutput;
+       document.getElementById("outputDiv2").innerHTML= USAOutput;
+       document.getElementById("outputDiv3").innerHTML= USAbmiOutput;
+       document.getElementById("outputDiv4").innerHTML= EUOutput;
+    }
+    
+    
+    // call the second function (bmi)
+    // store the value returned by bmi in a variable
+    // output the value returned by bmi to the div for the user to see
+    function bmi(C, K) {
+        // Metric units: BMI = weight (kg) ÷ height2 (m)
+        // US units: BMI = (weight (lb) ÷ height2 (in)) * 703
+     let bmi  = [Math.round(K/(Math.pow(C/100, 2))*10)/10]+' BMI';
+     return bmi;
+    }
+
+    function USAconversion (C, K) {
+        // Metric units: BMI = weight (kg) ÷ height2 (m)
+        // US units: BMI = (weight (lb) ÷ height2 (in)) * 703
+     let In  = Math.round((C * 0.3937)*10)/10;
+     let Lb = Math.round((K * 2.2)*10)/10;
+     let USAconversion = [In]+" Inches" +"<br>"+ [Lb]+" Pounds";
+     return USAconversion;
+    }
+    function USAbmi(I, P) {
+        // Metric units: BMI = weight (kg) ÷ height2 (m)
+        // US units: BMI = (weight (lb) ÷ height2 (in)) * 703
+     let USAbmi  = [Math.round(P/(Math.pow(I, 2))*703)*10/10] +' BMI';
+     return USAbmi;
+    }
+
+    function EUconversion (I, P) {
+        // Metric units: BMI = weight (kg) ÷ height2 (m)
+        // US units: BMI = (weight (lb) ÷ height2 (in)) * 703
+     let In  = Math.round((I / 0.3937)*10)/10;
+     let Lb = Math.round((P / 2.2)*10)/10;
+     let EUconversion = [In]+" Centemeters" +"<br>"+ [Lb]+" Kilograms";
+     return EUconversion;
+    }
+
+
+    
+    </script>
+    <style>
+        input, button {
+            border-radius: 10px;
+        }
+       input {
+           margin: 10px;
+           text-align: right;
+       }
+       label {
+           display:inline-block
+       }
+        input::placeholder {
+            text-align: right;
+        }
+       button {
+           padding: 5px;
+       }
+        #picture {
+            height: 260px;
+        background-image: url(https://th.bing.com/th/id/R.7452da9eb387c67d2f83774f5263ab8c?rik=YZZLzDfjreUUTg&riu=http%3a%2f%2fwww.visitpay.com%2fwp-content%2fuploads%2f2016%2f02%2fhospital-logos-14-1.png&ehk=3YSXx4OGwcfRR%2b7zjoSTR%2bHrfDmFXUGGkXFOi5IkzDo%3d&risl=&pid=ImgRaw);
+        background-repeat: no-repeat;
+        }
+        fieldset {
+            border-radius: 10px;
+    }
+        body {
+            margin-left: 100px;
+            margin-right: 100px;
+        }
+    </style>
+    
+</head>
+
+    <body>
+        <div id="picture"></div>
+               <h4>Intermountain Unit Converter</h4>
+       <label>Height (cm)</label><input type="text" id="cmInput" size="5" placeholder="cm"><br><br>
+       <label>Weight (kg)</label><input type="text" id="kgInput" size="5" placeholder="kg"><br><br>
+       <label>Height (in) </label><input type="text" id="inInput" size="5" placeholder="in"><br><br>
+       <label>Weight (lb) </label><input type="text" id="lbInput" size="5" placeholder="lb"><br><br>
+    <button type="button" onclick="doInputOutput()">Convert</button>
+    <br>
+    <br>
+    <h4>Results</h4>
+    <fieldset>
+    <div id="outputDiv"></div>  
+    <div id="outputDiv2"></div> 
+    <div id="outputDiv3"></div>
+    <div id="outputDiv4"></div>  
+    </fieldset>                 
+    </body>           
+    </html>
